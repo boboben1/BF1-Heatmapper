@@ -1,20 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using Heatmapper.Properties;
 
 namespace Heatmapper
 {
     public partial class MainForm : Form
     {
-
         public bool HideOnMinimize { get; private set; } = true;
         public bool PreventClosing { get; private set; } = true;
 
@@ -46,14 +38,12 @@ namespace Heatmapper
         private void MainForm_Load(object sender, EventArgs e)
         {
             richTextBox1.Text += Environment.NewLine;
-            richTextBox1.Text += string.Format(Resources.MainForm_MainForm_Load_Built_on__0_, Properties.Resources.BuildDate);
-            richTextBox1.Text += string.Format(Resources.MainForm_MainForm_Load_Heatmapper_Version___0_, Assembly.GetExecutingAssembly().GetName().Version.ToString());
+            richTextBox1.Text += string.Format(Resources.MainForm_MainForm_Load_Built_on__0_, Resources.BuildDate);
+            richTextBox1.Text += string.Format(Resources.MainForm_MainForm_Load_Heatmapper_Version___0_, Assembly.GetExecutingAssembly().GetName().Version);
             richTextBox1.SelectAll();
             richTextBox1.SelectionAlignment = HorizontalAlignment.Center;
             richTextBox1.HideSelection = true;
             richTextBox1.BorderStyle = BorderStyle.None;
-
-
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -79,6 +69,11 @@ namespace Heatmapper
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CloseWindow();
+        }
+
+        private void testNotificationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            notifyIcon1.ShowBalloonTip(5000, "Heatmapper", "TEST BALLON TIP", ToolTipIcon.Info);
         }
     }
 }
